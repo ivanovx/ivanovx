@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-3 border-bottom border-primary-subtle">
+<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary border-3 border-bottom border-primary-subtle">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="/images/logo.png" class="img-fluid" width="125" />
+            <img src="/images/logo.png" class="img-fluid" width="95" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,13 +19,16 @@
                     <a class="nav-link" routerLink="projects">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="articles">About</a>
+                    <a class="nav-link" routerLink="about">About</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <ul class="navbar-nav flex-row flex-wrap ms-md-auto" role="search">
+                <li class="nav-item col-6 col-lg-auto">
+                    <a class="nav-link" href="">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -33,3 +36,10 @@
 <div class="container content">
     <router-outlet />
 </div>
+
+<footer class="bg-body-tertiary text-center text-lg-start mt-5 border-3 border-top border-primary-subtle">
+    <div class="text-center p-3">
+        © 2024 Copyright:
+        <a class="text-decoration-none" href="/">yourdomain.com</a>
+    </div>
+</footer>
