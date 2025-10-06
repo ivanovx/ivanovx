@@ -1,0 +1,9 @@
+[build]
+  command = "yarn build"
+  functions = "netlify/functions"
+  publish = "dist/ivanovx/browser"
+
+[[redirects]]
+  from = "/*"
+  status = 200
+  to = "/index.csr.html"
