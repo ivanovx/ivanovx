@@ -1,4 +1,43 @@
+  import { CommonEngine } from '@angular/ssr/node'
+  import { render } from '@netlify/angular-runtime/common-engine'
+​
 import { APP_BASE_HREF } from '@angular/common';
+import { dirname, join, resolve } from 'node:path';
+const serverDistFolder = dirname(fileURLToPath(import.meta.url));
+const browserDistFolder = resolve(serverDistFolder, '../browser');
+const indexHtml = join(serverDistFolder, 'index.server.html');
+
+import bootstrap from './main.server'
+import { fileURLToPath } from 'node:url';
+
+  const commonEngine = new CommonEngine({
+    bootstrap,
+    //documentFilePath: 'dist/browser/index.html',
+   // publicPath: 'dist/browser',
+  });
+​
+  export async function netlifyCommonEngineHandler(request: Request, context: any): Promise<Response> {
+    // Example API endpoints can be defined here.
+    // Uncomment and define endpoints as necessary.
+    // const pathname = new URL(request.url).pathname;
+    // if (pathname === '/api/hello') {
+    //   return Response.json({ message: 'Hello from the API' });
+    // }
+
+    //const { url } = request;
+
+   /* commonEngine.render({
+        documentFilePath: indexHtml,
+        url,
+        //url: `${protocol}://${headers.host}${originalUrl}`,
+        publicPath: browserDistFolder,
+       // providers: [{ provide: APP_BASE_HREF, useValue: baseUrl
+    });   ​*/
+
+    return await render(commonEngine)
+  }
+
+/*import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine, isMainModule } from '@angular/ssr/node';
 import express from 'express';
 import { dirname, join, resolve } from 'node:path';
@@ -27,7 +66,7 @@ const commonEngine = new CommonEngine();
 /**
  * Serve static files from /browser
  */
-app.get(
+/*app.get(
   '**',
   express.static(browserDistFolder, {
     maxAge: '1y',
@@ -38,7 +77,7 @@ app.get(
 /**
  * Handle all other requests by rendering the Angular application.
  */
-app.get('**', (req, res, next) => {
+/*app.get('**', (req, res, next) => {
   const { protocol, originalUrl, baseUrl, headers } = req;
 
   commonEngine
@@ -57,7 +96,7 @@ app.get('**', (req, res, next) => {
  * Start the server if this module is the main entry point.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
-if (isMainModule(import.meta.url)) {
+/*if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 4000;
   app.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
@@ -65,3 +104,4 @@ if (isMainModule(import.meta.url)) {
 }
 
 export default app;
+*/
