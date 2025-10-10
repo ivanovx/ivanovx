@@ -25,7 +25,7 @@ import { fileURLToPath } from 'node:url';
     //   return Response.json({ message: 'Hello from the API' });
     // }
 
-    //const { url } = request;
+    const { url } = request;
 
    /* commonEngine.render({
         documentFilePath: indexHtml,
@@ -35,7 +35,20 @@ import { fileURLToPath } from 'node:url';
        // providers: [{ provide: APP_BASE_HREF, useValue: baseUrl
     });   ​*/
 
-    return await render(commonEngine)
+    const html = await commonEngine
+    .render({
+      bootstrap,
+      documentFilePath: indexHtml,
+      //url: `${protocol}://${headers.host}${originalUrl}`,
+      publicPath: browserDistFolder,
+      providers: [{ provide: APP_BASE_HREF, useValue: url }],
+    });
+    //.then((html) => res.send(html))
+    //.catch((err) => next(err));
+
+    //return await render(commonEngine)
+
+    return new Response(html);
   }
 
 /*import { APP_BASE_HREF } from '@angular/common';

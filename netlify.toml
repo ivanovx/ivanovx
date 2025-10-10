@@ -1,8 +1,0 @@
-[build]
-  command = "ng build"
-  publish = "dist/ivanovx/browser"
-
-[[redirects]]
-  from = "/*"
-  status = 200
-  to = "/index.csr.html"
