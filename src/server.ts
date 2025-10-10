@@ -1,8 +1,9 @@
-  import { CommonEngine } from '@angular/ssr/node'
-  import { render } from '@netlify/angular-runtime/common-engine'
-​
+import { CommonEngine } from '@angular/ssr/node'
+import { render } from '@netlify/angular-runtime/common-engine'
+
 import { APP_BASE_HREF } from '@angular/common';
 import { dirname, join, resolve } from 'node:path';
+
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 const indexHtml = join(serverDistFolder, 'index.server.html');
