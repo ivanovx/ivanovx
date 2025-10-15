@@ -8,5 +8,7 @@ const commonEngine = new CommonEngine({
 });
 
 export async function netlifyCommonEngineHandler(request: Request, context: any): Promise<Response> {
+    console.log(context);
+
     return await render(commonEngine);
 }
